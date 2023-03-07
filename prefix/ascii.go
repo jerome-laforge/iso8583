@@ -42,6 +42,10 @@ func (p *asciiVarPrefixer) DecodeLength(maxLen int, data []byte) (int, int, erro
 		return 0, 0, err
 	}
 
+	if dataLen < 0 {
+		return 0, 0, fmt.Errorf("data length: %d is negative", dataLen)
+	}
+
 	if dataLen > maxLen {
 		return 0, 0, fmt.Errorf("data length: %d is larger than maximum %d", dataLen, maxLen)
 	}
